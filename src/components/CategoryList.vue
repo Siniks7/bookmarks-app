@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useCategoryStore } from '@/stores/categories.store';
 import { onMounted } from 'vue';
+import ButtonIcon from './ButtonIcon.vue';
+import IconPlus from './IconPlus.vue';
 
 const store = useCategoryStore();
 
@@ -13,6 +15,11 @@ onMounted(() => {
   <ul class="category-list">
     <li class="list-item" v-for="item in store.categories" :key="item.id">
       <a :href="`/${item.alias}`">{{ item.name }}</a>
+    </li>
+    <li class="list-item">
+      <ButtonIcon @click="store.createCategory">
+        <IconPlus />
+      </ButtonIcon>
     </li>
   </ul>
 </template>
