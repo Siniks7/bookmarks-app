@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterView } from 'vue-router';
 import CategoryList from './components/CategoryList.vue';
 import ProfileAvatar from './components/ProfileAvatar.vue';
 </script>
@@ -9,7 +10,9 @@ import ProfileAvatar from './components/ProfileAvatar.vue';
       <ProfileAvatar />
       <CategoryList />
     </nav>
-    <main>Контент</main>
+    <main>
+      <RouterView />
+    </main>
   </div>
 </template>
 
