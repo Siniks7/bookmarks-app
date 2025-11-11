@@ -3,11 +3,18 @@ import { useRoute } from 'vue-router';
 import { useBookmarkStore } from '@/stores/bookmark.store';
 import type { Category } from '@/interfaces/category.inteface';
 import { useCategoryStore } from '@/stores/categories.store';
-import { ref, watch } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 const route = useRoute();
 const categoryStore = useCategoryStore();
 const bookmarkStore = useBookmarkStore();
 const category = ref<Category>();
+
+onMounted(() => {
+  category.value = categoryStore.getCategoryByAlias(route.params.alias as string);
+  if (category.value) {
+    bookmarkStore.fetchBookmarks(category.value.id);
+  }
+});
 
 watch(
   () => ({
