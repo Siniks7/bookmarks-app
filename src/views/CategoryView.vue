@@ -4,6 +4,7 @@ import { useBookmarkStore } from '@/stores/bookmark.store';
 import type { Category } from '@/interfaces/category.inteface';
 import { useCategoryStore } from '@/stores/categories.store';
 import { onMounted, ref, watch } from 'vue';
+import CategoryHeader from '@/components/CategoryHeader.vue';
 const route = useRoute();
 const categoryStore = useCategoryStore();
 const bookmarkStore = useBookmarkStore();
@@ -31,7 +32,5 @@ watch(
 </script>
 
 <template>
-  Category
-  {{ category?.name }}
-  {{ bookmarkStore.bookmarks.length }}
+  <CategoryHeader v-if="category" :category="category" />
 </template>
