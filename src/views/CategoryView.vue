@@ -5,6 +5,7 @@ import type { Category } from '@/interfaces/category.inteface';
 import { useCategoryStore } from '@/stores/categories.store';
 import { onMounted, ref, watch } from 'vue';
 import CategoryHeader from '@/components/CategoryHeader.vue';
+import BookmarkCard from '@/components/BookmarkCard.vue';
 const route = useRoute();
 const categoryStore = useCategoryStore();
 const bookmarkStore = useBookmarkStore();
@@ -33,4 +34,12 @@ watch(
 
 <template>
   <CategoryHeader v-if="category" :category="category" />
+  <BookmarkCard
+    :id="1"
+    image="/avatar.png"
+    title="GitHub - gofiber/fiber: ⚡️ Express inspired web framework written in Go"
+    url="https://purpleschool.ru"
+    :category_id="1"
+    :created_at="new Date()"
+  />
 </template>
