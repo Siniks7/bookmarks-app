@@ -20,6 +20,11 @@ export const useCategoryStore = defineStore('categories', () => {
     categories.value.push(data);
   }
 
+  async function deleteCategory(id: number) {
+    await client().delete<Category>(API_ROUTES.categories + '/' + id);
+    fetchCategories();
+  }
+
   async function updateCategory(name: string, alias: string, id: number) {
     await client().put<Category>(API_ROUTES.categories + '/' + id, {
       name,
@@ -35,5 +40,12 @@ export const useCategoryStore = defineStore('categories', () => {
     return;
   }
 
-  return { categories, fetchCategories, createCategory, getCategoryByAlias, updateCategory };
+  return {
+    categories,
+    fetchCategories,
+    createCategory,
+    getCategoryByAlias,
+    updateCategory,
+    deleteCategory,
+  };
 });
